@@ -1,0 +1,5 @@
+set(TableMsg_INCLUDE_DIRS /home/robot/Desktop/expirement/findpackage_try/include)
+set(TableMsg_LIB_DIRS /home/robot/Desktop/expirement/findpackage_try/lib)
+set(TableMsg_VERSION 1.0)
+LINK_DIRECTORIES(/home/robot/Desktop/expirement/findpackage_try/lib)
+set(TableMsg_LIB TableMsg)
