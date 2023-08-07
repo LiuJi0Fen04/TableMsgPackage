@@ -10,21 +10,19 @@ add_library(TableMsg SHARED ${CLASS})
 
 target_include_directories(TableMsg PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-# set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
-
+# config your library
 set(TableMsg_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(TableMsg_LIB_DIRS ${PROJECT_SOURCE_DIR}/lib)
 set(TableMsg_VERSION 1.0)
 LINK_DIRECTORIES(${TableMsg_LIB_DIRS})
 set(TableMsg_LIB TableMsg)
-# config your library
 configure_file(TableMsgConfig.cmake.in ${PROJECT_SOURCE_DIR}/lib/TableMsgConfig.cmake)
 
+FILE(GLOB_RECURSE CFG ${CMAKE_CURRENT_SOURCE_DIR}/config/*.*)
+install(FILES ${CFG} DESTINATION config)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/include/class.h DESTINATION include)
 install(FILES ${PROJECT_SOURCE_DIR}/lib/TableMsgConfig.cmake DESTINATION lib)
 install(TARGETS ${TableMsg_LIB} DESTINATION lib)
-
-
 
 include(InstallRequiredSystemLibraries)
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/License.txt")
