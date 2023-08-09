@@ -1,5 +1,0 @@
-set(TableMsg_INCLUDE_DIRS @TableMsg_INCLUDE_DIRS@)
-set(TableMsg_LIB_DIRS @TableMsg_LIB_DIRS@)
-set(TableMsg_VERSION @TableMsg_VERSION@)
-LINK_DIRECTORIES(${TableMsg_LIB_DIRS})
-set(TableMsg_LIB @TableMsg_LIB@)

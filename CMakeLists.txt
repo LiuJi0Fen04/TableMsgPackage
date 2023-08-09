@@ -6,23 +6,29 @@ FILE(GLOB_RECURSE CLASS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 foreach(item ${CLASS})
     message("cpp: ${item}")
 endforeach()
+
+# Target name
 add_library(TableMsg SHARED ${CLASS})
 
 target_include_directories(TableMsg PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-# config your library
-set(TableMsg_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include)
-set(TableMsg_LIB_DIRS ${PROJECT_SOURCE_DIR}/lib)
-set(TableMsg_VERSION 1.0)
-LINK_DIRECTORIES(${TableMsg_LIB_DIRS})
-set(TableMsg_LIB TableMsg)
-configure_file(TableMsgConfig.cmake.in ${PROJECT_SOURCE_DIR}/lib/TableMsgConfig.cmake)
 
-FILE(GLOB_RECURSE CFG ${CMAKE_CURRENT_SOURCE_DIR}/config/*.*)
+# all this code below here should be configured by autoMake.sh
+
+# # config your library
+# set(TableMsg_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include)
+# set(TableMsg_LIB_DIRS ${PROJECT_SOURCE_DIR}/lib)
+# set(TableMsg_VERSION 1.0)
+# LINK_DIRECTORIES(${TableMsg_LIB_DIRS})
+set(TableMsg_LIB TableMsg)
+# configure_file(./${CFG_DIR}/TableMsgConfig.cmake.in ${PROJECT_SOURCE_DIR}/lib/TableMsgConfig.cmake)
+
+
+FILE(GLOB_RECURSE CFG ${CMAKE_CURRENT_SOURCE_DIR}/${CFG_DIR}/*.*)
 install(FILES ${CFG} DESTINATION config)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/include/class.h DESTINATION include)
-install(FILES ${PROJECT_SOURCE_DIR}/lib/TableMsgConfig.cmake DESTINATION lib)
-install(TARGETS ${TableMsg_LIB} DESTINATION lib)
+# install(FILES ${PROJECT_SOURCE_DIR}/lib/TableMsgConfig.cmake DESTINATION lib)
+install(TARGETS TableMsg DESTINATION lib)
 
 include(InstallRequiredSystemLibraries)
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/License.txt")
